@@ -1,0 +1,5 @@
+There are some powershell functions for Box that I've downloaded and modified (in particular the BoxFunctions.psm file.  
+
+They are on the ITS server.  ..\ITS_Win\Powershell Modules\BoxFunctions.  They contain connection information so I don't want them to be at Github.
+
+Copy/Paste them to your Powershell modules path (usually in your Documents folder).
