@@ -28,7 +28,7 @@ if ($continue -eq "y")
 {
 	###start in the current directory
 	$dir = $psscriptroot
-	$date = get-date
+	$date = get-date -format MM-dd-yyyy
 
 	
 	$csvIn = get-filename "c:\"
@@ -64,7 +64,8 @@ if ($continue -eq "y")
 		While ($Exit -eq 0)
 
 		###set the parameters for the new user
-		$params = @{
+		$params = @
+		{
 			displayname = "$($name.last)_$($name.first)"
 			givenname = $name.first
 			surname = $name.last
@@ -89,11 +90,11 @@ if ($continue -eq "y")
 	$csvpath = get-childitem $csvIn
 	$csvpath = $csvpath.directory.fullname
 	$csv = new-object psobject
-	$csv | add-member noteproperty ID $params.employeeID
+	$csv | add-member noteproperty id $params.employeeID
 	$csv | add-member noteproperty name $params.displayname
 	$csv | add-member noteproperty login $params.userprincipalname
 	$csv | add-member noteproperty password $password
-	$csv | export-csv -path $dir\lausanneaccounts.csv -notypeinformation -append
+	$csv | export-csv -path $dir\StaffAccounts_CreatedOn_$date.csv -notypeinformation -append
 
 	###create the user
 	New-ADUser @Params
